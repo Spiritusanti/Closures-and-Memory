@@ -27,3 +27,24 @@ function heavyDuty2() {
 // with closures we only create the array once and able to access it multiple times before removing it from the memory heap
 
 // 2. encapsulation
+// hiding of information that is unnecessary or shouldn't be handled by the outside world. 
+// security principle --> principle of least privilege
+
+const makeNuclearButton = () => {
+  let timeWithoutDestruction = 0;
+  const passTime = () => timeWithoutDestruction++;
+  const totalPeaceTime = () => timeWithoutDestruction;
+  const launch = () => {
+    timeWithoutDestruction = -1;
+    return 'explode';}
+  setInterval(passTime, 1000)
+  return {
+    // launch: launch,
+    totalPeaceTime: totalPeaceTime
+  }
+}
+
+const ohNO = makeNuclearButton();
+ohNO.totalPeaceTime();
+
+// some data should not be directly exposed and closures allow us to accomplish this via encapsulation.
